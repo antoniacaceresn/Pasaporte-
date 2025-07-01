@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Flipbook con Portada Cerrada</title>
+  <title>Flipbook Realista con Portada y Contraportada</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="turn.min.js"></script>
   <style>
@@ -24,16 +24,21 @@
       box-shadow: 0 0 30px rgba(0,0,0,0.2);
     }
 
-    #flipbook .page {
+    #flipbook .page,
+    #flipbook .hard {
       width: 400px;
       height: 600px;
-      background-color: white;
     }
 
-    .page img {
+    .page img,
+    .hard img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    .hard {
+      background: #cccccc;
     }
 
     .controls {
@@ -58,13 +63,19 @@
 </head>
 <body>
 
+<!-- FLIPBOOK: portada (single), páginas (doble), contraportada (single) -->
 <div id="flipbook">
-  <div class="hard"><img src="pages/cover.jpg"></div>       <!-- Portada dura -->
-  <div class="page"><img src="pages/page1.png"></div>
-  <div class="page"><img src="pages/page2.png"></div>
-  <div class="hard"><img src="pages/backcover.jpg"></div>   <!-- Contraportada dura -->
+  <div class="hard"><img src="pages/cover.jpg" alt="Portada"></div>
+
+  <div class="page"><img src="pages/page1.png" alt="Página 1"></div>
+  <div class="page"><img src="pages/page2.png" alt="Página 2"></div>
+  <div class="page"><img src="pages/page3.png" alt="Página 3"></div>
+  <div class="page"><img src="pages/page4.png" alt="Página 4"></div>
+
+  <div class="hard"><img src="pages/backcover.jpg" alt="Contraportada"></div>
 </div>
 
+<!-- BOTONES -->
 <div class="controls">
   <button onclick="$('#flipbook').turn('previous')">⟨ Anterior</button>
   <button onclick="$('#flipbook').turn('next')">Siguiente ⟩</button>
@@ -76,7 +87,7 @@
     height: 600,
     autoCenter: true,
     elevation: 50,
-    display: 'double', // ⬅️ ESTO HACE QUE COMIENCE CERRADO
+    display: 'double',
     gradients: true
   });
 </script>
