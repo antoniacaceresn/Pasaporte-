@@ -2,25 +2,26 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Flipbook Interactivo</title>
+  <title>Flipbook con Portada</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="turn.min.js"></script> <!-- Debes tener este archivo en el mismo directorio -->
+  <script src="turn.min.js"></script>
   <style>
     body {
-      background-color: #f0f0f0;
+      background-color: #eaeaea;
       margin: 0;
+      padding: 40px;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      height: 100vh;
+      justify-content: center;
       font-family: sans-serif;
     }
 
     #flipbook {
       width: 800px;
       height: 600px;
-      margin: 5%;
-      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      margin: 20px auto;
+      box-shadow: 0 0 30px rgba(0,0,0,0.2);
     }
 
     #flipbook .page {
@@ -32,24 +33,51 @@
     .page img {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
+    }
+
+    .controls {
+      margin-top: 20px;
+    }
+
+    .controls button {
+      padding: 10px 20px;
+      margin: 0 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background-color: #333;
+      color: white;
+      cursor: pointer;
+    }
+
+    .controls button:hover {
+      background-color: #555;
     }
   </style>
 </head>
 <body>
 
 <div id="flipbook">
-  <div class="page"><img src="pages/01.jpg" alt="Página 1"></div>
-  <div class="page"><img src="pages/02.jpg" alt="Página 2"></div>
-  <div class="page"><img src="pages/03.jpg" alt="Página 3"></div>
-  <div class="page"><img src="pages/04.jpg" alt="Página 4"></div>
+  <div class="page"><img src="pages/cover.jpg" alt="Portada"></div>
+  <div class="page"><img src="pages/page1.png" alt="Página 1"></div>
+  <div class="page"><img src="pages/page2.png" alt="Página 2"></div>
+  <div class="page"><img src="pages/page3.png" alt="Página 3"></div>
+  <div class="page"><img src="pages/backcover.jpg" alt="Contraportada"></div>
+</div>
+
+<div class="controls">
+  <button onclick="$('#flipbook').turn('previous')">⟨ Anterior</button>
+  <button onclick="$('#flipbook').turn('next')">Siguiente ⟩</button>
 </div>
 
 <script>
   $("#flipbook").turn({
     width: 800,
     height: 600,
-    autoCenter: true
+    autoCenter: true,
+    elevation: 50,
+    gradients: true
   });
 </script>
 
