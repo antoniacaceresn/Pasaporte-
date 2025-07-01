@@ -14,6 +14,44 @@
 
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="estilo_timbre.css">
+  <style>
+    .stamp {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      pointer-events: none;
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0;
+      transition: opacity 0.2s ease, transform 0.1s ease;
+    }
+
+    .stamped {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  </style>
+</head>
+<body>
+  <h1>Haz clic para estampar el timbre 🖋️</h1>
+
+  <script>
+    document.addEventListener('click', function (e) {
+      const stamp = document.createElement('img');
+      stamp.src = 'stamp-mark.svg';
+      stamp.className = 'stamp';
+      stamp.style.left = e.pageX + 'px';
+      stamp.style.top = e.pageY + 'px';
+      document.body.appendChild(stamp);
+      setTimeout(() => stamp.classList.add('stamped'), 10);
+    });
+  </script>
+</body>
+</html>
+
+
+<head>
+  <meta charset="UTF-8">
   <title>Flipbook Realista con Portada y Contraportada</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="turn.min.js"></script>
