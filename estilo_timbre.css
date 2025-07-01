@@ -22,11 +22,9 @@ body {
   justify-content: center;
   font-family: sans-serif;
 }
-#flipbook {
+
+#flipbook .page {
   position: relative;
-  width: 800px;
-  height: 600px;
-  margin: 0 auto;
 }
 
 .stamp {
@@ -42,9 +40,3 @@ body {
 .stamped {
   opacity: 1;
 }
-
-
-h1 {
-  color: #333;
-}
-
