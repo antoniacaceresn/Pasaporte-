@@ -33,6 +33,28 @@
   </style>
 </head>
 <body>
+<div id="flipbook">
+  <!-- tus páginas aquí -->
+</div>
+
+<script>
+  const flipbook = document.getElementById('flipbook');
+
+  flipbook.addEventListener('click', function (e) {
+    const stamp = document.createElement('img');
+    stamp.src = 'stamp-mark.svg';
+    stamp.className = 'stamp';
+
+    // Posicionar dentro del contenedor
+    stamp.style.left = e.offsetX + 'px';
+    stamp.style.top = e.offsetY + 'px';
+
+    flipbook.appendChild(stamp);
+
+    // Activar animación
+    setTimeout(() => stamp.classList.add('stamped'), 10);
+  });
+</script>
 
   <script>
     document.addEventListener('click', function (e) {
