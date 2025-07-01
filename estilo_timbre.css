@@ -27,6 +27,33 @@ body {
   position: relative;
 }
 
+#page3 {
+  position: relative;
+  width: 400px;   /* Ajusta al tamaño real de tu página PNG */
+  height: 600px;  /* Ajusta al tamaño real */
+}
+
+#page3 img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.stamp {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.stamped {
+  opacity: 1;
+}
+
+
 .stamp {
   position: absolute;
   width: 80px;
