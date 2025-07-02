@@ -145,21 +145,25 @@
 </script>
 
 <script>
-  setTimeout(() => {
+  document.addEventListener('DOMContentLoaded', () => {
     const page6 = document.getElementById('page6');
+
     if (page6) {
       page6.addEventListener('click', function(e) {
         const stamp = document.createElement('img');
         stamp.src = 'stamp-mark.svg';
         stamp.className = 'stamp';
-        stamp.style.left = e.offsetX + 'px';
-        stamp.style.top = e.offsetY + 'px';
+        stamp.style.left = `${e.offsetX}px`;
+        stamp.style.top = `${e.offsetY}px`;
         page6.appendChild(stamp);
         setTimeout(() => stamp.classList.add('stamped'), 10);
       });
+    } else {
+      console.warn('⚠️ La página 6 no se encontró. Asegúrate de que tenga id="page6" y sea la sexta en el DOM.');
     }
-  }, 1000); // Espera 1 segundo a que se renderice
+  });
 </script>
+
 
 
 
