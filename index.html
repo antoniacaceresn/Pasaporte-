@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Flipbook Realista con Timbre en Página 6</title>
+  <title>Flipbook con Timbre en Página 6</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="turn.min.js"></script> <!-- Asegúrate que esta ruta es correcta -->
   <style>
@@ -28,7 +28,7 @@
     #flipbook .hard {
       width: 400px;
       height: 600px;
-      position: relative; /* necesario para posicionar timbre */
+      position: relative;
     }
 
     .page img,
@@ -62,13 +62,10 @@
       background-color: #555;
     }
 
-    /* Estilos para el timbre */
     .stamp {
       position: absolute;
-      width: 80px !important;
-      height: 80px !important;
-      max-width: 80px;
-      max-height: 80px;
+      width: 80px;
+      height: 80px;
       pointer-events: none;
       z-index: 10;
       transform: translate(-50%, -50%);
@@ -85,7 +82,6 @@
 
   <h1>Pasaporte</h1>
 
-  <!-- FLIPBOOK -->
   <div id="flipbook">
     <div class="hard"><img src="pages/cover.png" alt="Portada"></div>
 
@@ -94,20 +90,18 @@
     <div class="page"><img src="pages/page3.png" alt="Página 3"></div>
     <div class="page"><img src="pages/page4.png" alt="Página 4"></div>
     <div class="page"><img src="pages/page5.png" alt="Página 5"></div>
-    <div class="page"><img src="pages/page6.png" alt="Página 6"></div>
+    <div class="page" id="stamp-target"><img src="pages/page6.png" alt="Página 6"></div>
     <div class="page"><img src="pages/page7.png" alt="Página 7"></div>
     <div class="page"><img src="pages/page8.png" alt="Página 8"></div>
 
     <div class="hard"><img src="pages/backcover.png" alt="Contraportada"></div>
   </div>
 
-  <!-- BOTONES -->
   <div class="controls">
     <button onclick="$('#flipbook').turn('previous')">⟨ Anterior</button>
     <button onclick="$('#flipbook').turn('next')">Siguiente ⟩</button>
   </div>
 
-  <!-- SCRIPT PARA FLIPBOOK Y TIMBRE -->
   <script>
     $(document).ready(function () {
       $('#flipbook').turn({
@@ -116,30 +110,24 @@
         autoCenter: true,
         when: {
           turned: function (event, page) {
-            console.log("Página actual:", page);
-
-            // Si estamos en la página 6 (lado izquierdo)
             if (page === 6) {
-              const view = $('#flipbook').turn('view'); // devuelve [leftPage, rightPage]
-              const pageNum = view[0]; // página izquierda
-              const pageElement = $(`#flipbook .page:nth-child(${pageNum + 1})`)[0];
+              const pageEl = document.getElementById("stamp-target");
 
-              if (pageElement && !pageElement.classList.contains('listener-added')) {
-                pageElement.classList.add('listener-added');
+              if (pageEl && !pageEl.classList.contains('listener-added')) {
+                pageEl.classList.add('listener-added');
 
-                pageElement.addEventListener('click', function (e) {
-                  const stamp = document.createElement('img');
-                  stamp.src = 'stamp-mark.svg';
-                  stamp.className = 'stamp';
-
-                  const rect = pageElement.getBoundingClientRect();
+                pageEl.addEventListener('click', function (e) {
+                  const rect = pageEl.getBoundingClientRect();
                   const x = e.clientX - rect.left;
                   const y = e.clientY - rect.top;
 
+                  const stamp = document.createElement('img');
+                  stamp.src = 'stamp-mark.svg'; // Asegúrate que este archivo exista
+                  stamp.className = 'stamp';
                   stamp.style.left = `${x}px`;
                   stamp.style.top = `${y}px`;
 
-                  pageElement.appendChild(stamp);
+                  pageEl.appendChild(stamp);
                   setTimeout(() => stamp.classList.add('stamped'), 10);
                 });
               }
