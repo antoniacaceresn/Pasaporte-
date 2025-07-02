@@ -33,7 +33,17 @@
   </style>
 </head>
 <body>
-
+  <script>
+     {
+      const stamp = document.createElement('img');
+      stamp.src = 'stamp-mark.svg';
+      stamp.className = 'stamp';
+      stamp.style.left = e.pageX + 'px';
+      stamp.style.top = e.pageY + 'px';
+      document.body.appendChild(stamp);
+      setTimeout(() => stamp.classList.add('stamped'), 10);
+    });
+  </script>
   <script>
   const page3 = document.getElementById('page3');
 
