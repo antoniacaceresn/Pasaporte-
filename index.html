@@ -145,35 +145,25 @@
 </script>
 
 <script>
-  $('#flipbook').turn({
-    width: 800,
-    height: 600,
-    autoCenter: true,
-    when: {
-      turned: function (event, page, view) {
-        // Solo al llegar a la página 6
-        if (page === 6) {
-          const page6 = document.querySelectorAll('.page')[5]; // posición 5 (0-indexed)
+  const page6 = document.getElementById('page6');
 
-          if (page6 && !page6.dataset.listenerAdded) {
-            page6.dataset.listenerAdded = true;
+  if (page6) {
+    page6.addEventListener('click', function (e) {
+      const stamp = document.createElement('img');
+      stamp.src = 'stamp-mark.svg';
+      stamp.className = 'stamp';
 
-            page6.addEventListener('click', function (e) {
-              const stamp = document.createElement('img');
-              stamp.src = 'stamp-mark.svg';
-              stamp.className = 'stamp';
-              stamp.style.left = `${e.offsetX}px`;
-              stamp.style.top = `${e.offsetY}px`;
-              page6.appendChild(stamp);
-              setTimeout(() => stamp.classList.add('stamped'), 10);
-            });
-          }
-        }
-      }
-    }
-  });
+      stamp.style.left = e.offsetX + 'px';
+      stamp.style.top = e.offsetY + 'px';
+
+      page6.appendChild(stamp);
+
+      setTimeout(() => stamp.classList.add('stamped'), 10);
+    });
+  } else {
+    console.warn("No se encontró #page6. Verifica que esté en el HTML.");
+  }
 </script>
-
 
 </body>
 </html>
