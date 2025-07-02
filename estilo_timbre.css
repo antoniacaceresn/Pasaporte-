@@ -23,36 +23,51 @@ body {
   font-family: sans-serif;
 }
 
-#flipbook .page {
-  position: relative;
+/* Flipbook base */
+#flipbook {
+  width: 800px;
+  height: 600px;
+  margin: 40px auto;
 }
 
+/* Estilo general de páginas */
+.page {
+  width: 100%;
+  height: 100%;
+  background: white;
+  overflow: hidden;
+}
+
+/* Página 6 específica: necesario para el timbre */
 #page6 {
   position: relative;
-  width: 400px;
-  height: 600px;
+  width: 100%;
+  height: 100%;
 }
 
+/* Imagen dentro de la página */
 #page6 img {
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: 100%;
   display: block;
+  pointer-events: none; /* evita que bloquee clics si necesario */
 }
 
+/* Timbre visual */
 .stamp {
   position: absolute;
-  pointer-events: none;
   width: 80px !important;
   height: 80px !important;
-  max-width: 80px !important;
-  max-height: 80px !important;
+  pointer-events: none;
+  z-index: 10;
   transform: translate(-50%, -50%);
   opacity: 0;
   transition: opacity 0.2s ease;
 }
 
+/* Activación del timbre */
 .stamped {
   opacity: 1;
 }
-
-
