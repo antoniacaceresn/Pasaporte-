@@ -28,7 +28,7 @@
     #flipbook .hard {
       width: 400px;
       height: 600px;
-      position: relative; /* importante para posicionar timbre */
+      position: relative; /* necesario para posicionar timbre */
     }
 
     .page img,
@@ -65,8 +65,10 @@
     /* Estilos para el timbre */
     .stamp {
       position: absolute;
-      width: 80px;
-      height: 80px;
+      width: 80px !important;
+      height: 80px !important;
+      max-width: 80px;
+      max-height: 80px;
       pointer-events: none;
       z-index: 10;
       transform: translate(-50%, -50%);
@@ -115,26 +117,29 @@
         when: {
           turned: function (event, page) {
             console.log("Página actual:", page);
+
+            // Si estamos en la página 6 (lado izquierdo)
             if (page === 6) {
-              const pages = document.querySelectorAll('.page');
-              const targetPage = pages[5]; // página 6 (índice 5)
+              const view = $('#flipbook').turn('view'); // devuelve [leftPage, rightPage]
+              const pageNum = view[0]; // página izquierda
+              const pageElement = $(`#flipbook .page:nth-child(${pageNum + 1})`)[0];
 
-              if (targetPage && !targetPage.classList.contains('listener-added')) {
-                targetPage.classList.add('listener-added');
+              if (pageElement && !pageElement.classList.contains('listener-added')) {
+                pageElement.classList.add('listener-added');
 
-                targetPage.addEventListener('click', function (e) {
+                pageElement.addEventListener('click', function (e) {
                   const stamp = document.createElement('img');
                   stamp.src = 'stamp-mark.svg';
                   stamp.className = 'stamp';
 
-                  const rect = targetPage.getBoundingClientRect();
+                  const rect = pageElement.getBoundingClientRect();
                   const x = e.clientX - rect.left;
                   const y = e.clientY - rect.top;
 
                   stamp.style.left = `${x}px`;
                   stamp.style.top = `${y}px`;
 
-                  targetPage.appendChild(stamp);
+                  pageElement.appendChild(stamp);
                   setTimeout(() => stamp.classList.add('stamped'), 10);
                 });
               }
