@@ -44,21 +44,6 @@
       setTimeout(() => stamp.classList.add('stamped'), 10);
     });
   </script>
-  <script>
-  const page3 = document.getElementById('page3');
-
-  page3.addEventListener('click', function (e) {
-    const stamp = document.createElement('img');
-    stamp.src = 'stamp-mark.svg';
-    stamp.className = 'stamp';
-    stamp.style.left = `${e.offsetX}px`;
-    stamp.style.top = `${e.offsetY}px`;
-
-    page3.appendChild(stamp);
-
-    setTimeout(() => stamp.classList.add('stamped'), 10);
-  });
-</script>
 
 </body>
 </html>
@@ -158,20 +143,24 @@
 <script>
   const page3 = document.getElementById('page3');
 
-  page3.addEventListener('click', function (e) {
-    const stamp = document.createElement('img');
-    stamp.src = 'stamp-mark.svg';
-    stamp.className = 'stamp';
+  if (page3) {
+    page3.addEventListener('click', function (e) {
+      const stamp = document.createElement('img');
+      stamp.src = 'stamp-mark.svg';
+      stamp.className = 'stamp';
 
-    // Posición dentro de la página
-    stamp.style.left = e.offsetX + 'px';
-    stamp.style.top = e.offsetY + 'px';
+      stamp.style.left = e.offsetX + 'px';
+      stamp.style.top = e.offsetY + 'px';
 
-    page3.appendChild(stamp);
+      page3.appendChild(stamp);
 
-    setTimeout(() => stamp.classList.add('stamped'), 10);
-  });
+      setTimeout(() => stamp.classList.add('stamped'), 10);
+    });
+  } else {
+    console.warn("No se encontró #page3. Verifica que esté en el HTML.");
+  }
 </script>
+
 
 </body>
 </html>
