@@ -127,6 +127,12 @@
                   stamp.style.left = `${x}px`;
                   stamp.style.top = `${y}px`;
 
+                  stamp.style.width = '80px';
+                  stamp.style.height = '80px';
+                  stamp.style.maxWidth = '80px';
+                  stamp.style.maxHeight = '80px';
+                  stamp.style.objectFit = 'contain';
+
                   pageEl.appendChild(stamp);
                   setTimeout(() => stamp.classList.add('stamped'), 10);
                 });
