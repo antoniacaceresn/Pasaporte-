@@ -145,26 +145,34 @@
 </script>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const page6 = document.getElementById('page6');
+  $('#flipbook').turn({
+    width: 800,
+    height: 600,
+    autoCenter: true,
+    when: {
+      turned: function (event, page, view) {
+        // Solo al llegar a la página 6
+        if (page === 6) {
+          const page6 = document.querySelectorAll('.page')[5]; // posición 5 (0-indexed)
 
-    if (page6) {
-      page6.addEventListener('click', function(e) {
-        const stamp = document.createElement('img');
-        stamp.src = 'stamp-mark.svg';
-        stamp.className = 'stamp';
-        stamp.style.left = `${e.offsetX}px`;
-        stamp.style.top = `${e.offsetY}px`;
-        page6.appendChild(stamp);
-        setTimeout(() => stamp.classList.add('stamped'), 10);
-      });
-    } else {
-      console.warn('⚠️ La página 6 no se encontró. Asegúrate de que tenga id="page6" y sea la sexta en el DOM.');
+          if (page6 && !page6.dataset.listenerAdded) {
+            page6.dataset.listenerAdded = true;
+
+            page6.addEventListener('click', function (e) {
+              const stamp = document.createElement('img');
+              stamp.src = 'stamp-mark.svg';
+              stamp.className = 'stamp';
+              stamp.style.left = `${e.offsetX}px`;
+              stamp.style.top = `${e.offsetY}px`;
+              page6.appendChild(stamp);
+              setTimeout(() => stamp.classList.add('stamped'), 10);
+            });
+          }
+        }
+      }
     }
   });
 </script>
-
-
 
 
 </body>
