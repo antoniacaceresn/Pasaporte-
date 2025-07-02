@@ -118,9 +118,7 @@
   <div class="page"><img src="pages/page3.png" alt="Página 3"></div>
   <div class="page"><img src="pages/page4.png" alt="Página 4"></div>
   <div class="page"><img src="pages/page5.png" alt="Página 5"></div>
-  <div class="page" id="page6">
-    <img src="pages/page6.png" alt="Página 6">
-  </div>
+  <div class="page"><img src="pages/page6.png" alt="Página 6"></div>
   <div class="page"><img src="pages/page7.png" alt="Página 7"></div>
   <div class="page"><img src="pages/page8.png" alt="Página 8"></div>
 
@@ -134,36 +132,37 @@
 </div>
 
 <script>
-  $('#flipbook').turn({
-    width: 800,
-    height: 600,
-    autoCenter: true,
-    elevation: 50,
-    display: 'double',
-    gradients: true
+  $(document).ready(function () {
+    $('#flipbook').turn({
+      width: 800,
+      height: 600,
+      autoCenter: true,
+      when: {
+        turned: function (event, page) {
+          if (page === 6) {
+            const pages = document.querySelectorAll('.page');
+            const targetPage = pages[5]; // Sexta página = índice 5
+
+            if (targetPage && !targetPage.dataset.listenerAdded) {
+              targetPage.dataset.listenerAdded = true;
+
+              targetPage.addEventListener('click', function (e) {
+                const stamp = document.createElement('img');
+                stamp.src = 'stamp-mark.svg';
+                stamp.className = 'stamp';
+                stamp.style.left = `${e.offsetX}px`;
+                stamp.style.top = `${e.offsetY}px`;
+                targetPage.appendChild(stamp);
+                setTimeout(() => stamp.classList.add('stamped'), 10);
+              });
+            }
+          }
+        }
+      }
+    });
   });
 </script>
 
-<script>
-  const page6 = document.getElementById('page6');
-
-  if (page6) {
-    page6.addEventListener('click', function (e) {
-      const stamp = document.createElement('img');
-      stamp.src = 'stamp-mark.svg';
-      stamp.className = 'stamp';
-
-      stamp.style.left = e.offsetX + 'px';
-      stamp.style.top = e.offsetY + 'px';
-
-      page6.appendChild(stamp);
-
-      setTimeout(() => stamp.classList.add('stamped'), 10);
-    });
-  } else {
-    console.warn("No se encontró #page6. Verifica que esté en el HTML.");
-  }
-</script>
 
 </body>
 </html>
