@@ -46,6 +46,9 @@ body {
   position: absolute;
   width: 80px;
   height: 80px;
+  max-width: 80px;
+  max-height: 80px;
+  object-fit: contain;
   pointer-events: none;
   z-index: 10;
   transform: translate(-50%, -50%);
@@ -53,6 +56,6 @@ body {
   transition: opacity 0.2s ease;
 }
 
-.stamped {
+.stamp.stamped {
   opacity: 1;
 }
