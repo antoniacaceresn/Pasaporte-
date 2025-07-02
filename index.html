@@ -35,16 +35,21 @@
 <body>
 
   <script>
-     {
-      const stamp = document.createElement('img');
-      stamp.src = 'stamp-mark.svg';
-      stamp.className = 'stamp';
-      stamp.style.left = e.pageX + 'px';
-      stamp.style.top = e.pageY + 'px';
-      document.body.appendChild(stamp);
-      setTimeout(() => stamp.classList.add('stamped'), 10);
-    });
-  </script>
+  const page3 = document.getElementById('page3');
+
+  page3.addEventListener('click', function (e) {
+    const stamp = document.createElement('img');
+    stamp.src = 'stamp-mark.svg';
+    stamp.className = 'stamp';
+    stamp.style.left = `${e.offsetX}px`;
+    stamp.style.top = `${e.offsetY}px`;
+
+    page3.appendChild(stamp);
+
+    setTimeout(() => stamp.classList.add('stamped'), 10);
+  });
+</script>
+
 </body>
 </html>
 
