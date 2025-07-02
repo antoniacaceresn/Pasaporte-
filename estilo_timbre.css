@@ -29,8 +29,8 @@ body {
 
 #page3 {
   position: relative;
-  width: 400px;   /* Ajusta al tamaño real de tu página PNG */
-  height: 600px;  /* Ajusta al tamaño real */
+  width: 400px;
+  height: 600px;
 }
 
 #page3 img {
@@ -41,9 +41,11 @@ body {
 
 .stamp {
   position: absolute;
-  width: 80px;
-  height: 80px;
   pointer-events: none;
+  width: 80px !important;
+  height: 80px !important;
+  max-width: none !important;
+  max-height: none !important;
   transform: translate(-50%, -50%);
   opacity: 0;
   transition: opacity 0.2s ease;
@@ -53,8 +55,4 @@ body {
   opacity: 1;
 }
 
-.stamp {
-  width: 80px;
-  height: 80px;
-}
 
