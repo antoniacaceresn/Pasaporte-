@@ -118,7 +118,9 @@
   <div class="page"><img src="pages/page3.png" alt="Página 3"></div>
   <div class="page"><img src="pages/page4.png" alt="Página 4"></div>
   <div class="page"><img src="pages/page5.png" alt="Página 5"></div>
-  <div class="page" id="page6"><img src="pages/page6.png" alt="Página 6"></div>
+  <div class="page" id="page6">
+    <img src="pages/page6.png" alt="Página 6">
+  </div>
   <div class="page"><img src="pages/page7.png" alt="Página 7"></div>
   <div class="page"><img src="pages/page8.png" alt="Página 8"></div>
 
@@ -143,25 +145,22 @@
 </script>
 
 <script>
-  const page6 = document.getElementById('page6');
-
-  if (page6) {
-    page6.addEventListener('click', function (e) {
-      const stamp = document.createElement('img');
-      stamp.src = 'stamp-mark.svg';
-      stamp.className = 'stamp';
-
-      stamp.style.left = e.offsetX + 'px';
-      stamp.style.top = e.offsetY + 'px';
-
-      page6.appendChild(stamp);
-
-      setTimeout(() => stamp.classList.add('stamped'), 10);
-    });
-  } else {
-    console.warn("No se encontró #page6. Verifica que esté en el HTML.");
-  }
+  setTimeout(() => {
+    const page6 = document.getElementById('page6');
+    if (page6) {
+      page6.addEventListener('click', function(e) {
+        const stamp = document.createElement('img');
+        stamp.src = 'stamp-mark.svg';
+        stamp.className = 'stamp';
+        stamp.style.left = e.offsetX + 'px';
+        stamp.style.top = e.offsetY + 'px';
+        page6.appendChild(stamp);
+        setTimeout(() => stamp.classList.add('stamped'), 10);
+      });
+    }
+  }, 1000); // Espera 1 segundo a que se renderice
 </script>
+
 
 
 </body>
