@@ -131,8 +131,9 @@
                   const stamp = document.createElement('img');
                   stamp.src = 'stamp-mark.svg'; // Asegúrate que este archivo exista
                   stamp.className = 'stamp';
-                  stamp.style.left = `${x}px`;
-                  stamp.style.top = `${y}px`;
+                  const offset = 32; // la mitad del tamaño del cursor
+                  stamp.style.left = `${e.offsetX + offset}px`;
+                  stamp.style.top = `${e.offsetY + offset}px`;
 
                   stamp.style.width = '80px';
                   stamp.style.height = '80px';
